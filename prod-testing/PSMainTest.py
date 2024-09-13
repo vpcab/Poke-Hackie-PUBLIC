@@ -1,6 +1,5 @@
 import asyncio
 
-from poke_env.player import RandomPlayer
 from poke_env import AccountConfiguration, ShowdownServerConfiguration
 
 import importlib
