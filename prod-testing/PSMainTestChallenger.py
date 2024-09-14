@@ -15,13 +15,13 @@ async def main():
     myTeamFile.close()
 
     player = module.MyPokeBot(
-        account_configuration=AccountConfiguration("UNIQUENAMEBOTTWO", "insert-bot-password"),
+        account_configuration=AccountConfiguration("pokemonenemy", "test123"),
         server_configuration=LocalhostServerConfiguration,
         team=myTeam
     )
 
     # Sending challenges to 'your_username'
-    await player.send_challenges("UNIQUENAMEBOTONE", n_challenges=1)
+    await player.send_challenges("pokemonhackie", n_challenges=1)
     #await player.send_challenges("hmtesting", n_challenges=1)
 
     # Accepting one challenge from any user

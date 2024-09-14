@@ -15,7 +15,7 @@ async def main():
     myTeamFile.close()
 
     player = module.MyPokeBot(
-        account_configuration=AccountConfiguration("UNIQUENAMEBOTONE", "insert-bot-password"),
+        account_configuration=AccountConfiguration("pokemonhackie", "test123"),
         server_configuration=LocalhostServerConfiguration,
         team=myTeam
     )

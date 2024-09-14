@@ -1,16 +1,7 @@
-Clefable @ Assault Vest  
-Ability: Cute Charm  
-EVs: 76 HP  
-- Blizzard  
-- Aromatherapy  
-- Body Slam  
-- Brick Break  
-
-Charizard-Mega-Y @ Charizardite Y  
-Ability: Blaze  
-EVs: 56 Atk  
-- Ancient Power  
-- Air Slash  
-- Body Slam  
-- Brick Break  
-
+Clefable @ Leftovers  
+Ability: Magic Guard  
+EVs: 252 HP / 172 Def / 84 SpD  
+Calm Nature  
+- Soft-Boiled  
+- Thunder Wave  
+- Calm Mind  
