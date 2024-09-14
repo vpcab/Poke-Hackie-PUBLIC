@@ -6,3 +6,50 @@ Jolly Nature
 - Stone Edge
 - U-turn
 - Knock Off
+
+Rotom-Wash @ Leftovers
+Ability: Levitate
+EVs: 252 HP / 44 SpD / 212 Spe
+Calm Nature
+- Volt Switch
+- Hydro Pump
+- Will-O-Wisp
+- Pain Split
+
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+EVs: 252 HP / 88 Def / 168 SpD
+Relaxed Nature
+IVs: 0 Spe
+- Spikes
+- Leech Seed
+- Gyro Ball
+- Protect
+
+Latios @ Life Orb
+Ability: Levitate
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Draco Meteor
+- Psyshock
+- Defog
+- Roost
+
+Heatran @ Leftovers
+Ability: Flash Fire
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
+- Lava Plume
+- Toxic
+- Protect
+- Earth Power
+
+Azumarill @ Choice Band
+Ability: Huge Power
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Aqua Jet
+- Play Rough
+- Waterfall
+- Knock Off
+

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<!-- version 1 -->
+<title>battle-gen6ou-76</title>
+<style>
+    html,
+    body {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 12px 0;
+    }
+
+    .battle-log {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+    }
+
+    .battle-log-inline {
+        border: 1px solid #AAAAAA;
+        background: #EEF2F5;
+        color: black;
+        max-width: 640px;
+        margin: 0 auto 80px;
+        padding-bottom: 5px;
+    }
+
+    .battle-log .inner {
+        padding: 4px 8px 0px 8px;
+    }
+
+    .battle-log .inner-preempt {
+        padding: 0 8px 4px 8px;
+    }
+
+    .battle-log .inner-after {
+        margin-top: 0.5em;
+    }
+
+    .battle-log h2 {
+        margin: 0.5em -8px;
+        padding: 4px 8px;
+        border: 1px solid #AAAAAA;
+        background: #E0E7EA;
+        border-left: 0;
+        border-right: 0;
+        font-family: Verdana, sans-serif;
+        font-size: 13pt;
+    }
+
+    .backprop {
+        top: 0;
+    }
+
+    .battle-log .chat {
+        vertical-align: middle;
+        padding: 3px 0 3px 0;
+        font-size: 8pt;
+    }
+
+    .battle-log .chat strong {
+        color: #40576A;
+    }
+
+    .battle-log .chat em {
+        padding: 1px 4px 1px 3px;
+        color: #000000;
+        font-style: normal;
+    }
+
+    .chat.mine {
+        background: rgba(0, 0, 0, 0.05);
+        margin-left: -8px;
+        margin-right: -8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .spoiler {
+        color: #BBBBBB;
+        background: #BBBBBB;
+        padding: 0px 3px;
+    }
+
+    .spoiler:hover,
+    .spoiler:active,
+    .spoiler-shown {
+        color: #000000;
+        background: #E2E2E2;
+        padding: 0px 3px;
+    }
+
+    .spoiler a {
+        color: #BBBBBB;
+    }
+
+    .spoiler:hover a,
+    .spoiler:active a,
+    .spoiler-shown a {
+        color: #2288CC;
+    }
+
+    .chat code,
+    .chat .spoiler:hover code,
+    .chat .spoiler:active code,
+    .chat .spoiler-shown code {
+        border: 1px solid #C0C0C0;
+        background: #EEEEEE;
+        color: black;
+        padding: 0 2px;
+    }
+
+    .chat .spoiler code {
+        border: 1px solid #CCCCCC;
+        background: #CCCCCC;
+        color: #CCCCCC;
+    }
+
+    .battle-log .rated {
+        padding: 3px 4px;
+    }
+
+    .battle-log .rated strong {
+        color: white;
+        background: #89A;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }
+
+    .spacer {
+        margin-top: 0.5em;
+    }
+
+    .message-announce {
+        background: #6688AA;
+        color: white;
+        padding: 1px 4px 2px;
+    }
+
+    .message-announce a,
+    .broadcast-green a,
+    .broadcast-blue a,
+    .broadcast-red a {
+        color: #DDEEFF;
+    }
+
+    .broadcast-green {
+        background-color: #559955;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .broadcast-blue {
+        background-color: #6688AA;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .infobox {
+        border: 1px solid #6688AA;
+        padding: 2px 4px;
+    }
+
+    .infobox-limited {
+        max-height: 200px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .broadcast-red {
+        background-color: #AA5544;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .message-learn-canlearn {
+        font-weight: bold;
+        color: #228822;
+        text-decoration: underline;
+    }
+
+    .message-learn-cannotlearn {
+        font-weight: bold;
+        color: #CC2222;
+        text-decoration: underline;
+    }
+
+    .message-effect-weak {
+        font-weight: bold;
+        color: #CC2222;
+    }
+
+    .message-effect-resist {
+        font-weight: bold;
+        color: #6688AA;
+    }
+
+    .message-effect-immune {
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .message-learn-list {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .message-throttle-notice,
+    .message-error {
+        color: #992222;
+    }
+
+    .message-overflow,
+    .chat small.message-overflow {
+        font-size: 0pt;
+    }
+
+    .message-overflow::before {
+        font-size: 9pt;
+        content: '...';
+    }
+
+    .subtle {
+        color: #3A4A66;
+    }
+</style>
+<div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
+    <input type="hidden" name="replayid" value="unregisteredserver-gen8randombattle-320064" />
+    <div class="battle"></div>
+    <div class="battle-log"></div>
+    <div class="replay-controls"></div>
+    <div class="replay-controls-2"></div>
+    <h1 style="font-weight:normal;text-align:center"><strong>poke-env battle replay</strong><br />battle-gen6ou-76<br /><a
+            href="http://pokemonshowdown.com/users/randomplayer1" class="subtle" target="_blank">pokemonenemy</a>
+        vs. <a href="http://pokemonshowdown.com/users/randomplayer2" class="subtle"
+            target="_blank">pokemonhackie</a></h1>
+    <script type="text/plain" class="battle-log-data">
+    >battle-gen6ou-76|init|battle
+|title|pokemonenemy vs. pokemonhackie
+|j|☆pokemonenemy
+|j|☆pokemonhackie
+|gametype|singles
+|player|p1|pokemonenemy|169|
+|player|p2|pokemonhackie|265|
+|teamsize|p1|6
+|teamsize|p2|6
+|gen|6
+|tier|[Gen 6] OU
+|rule|Sleep Clause Mod: Limit one foe put to sleep
+|rule|Species Clause: Limit one of each Pokémon
+|rule|OHKO Clause: OHKO moves are banned
+|rule|Moody Clause: Moody is banned
+|rule|Evasion Items Clause: Evasion items are banned
+|rule|Evasion Moves Clause: Evasion moves are banned
+|rule|Endless Battle Clause: Forcing endless battles is banned
+|rule|HP Percentage Mod: HP is shown in percentages
+|rule|Swagger Clause: Swagger is banned
+|clearpoke
+|poke|p1|Landorus-Therian, M|item
+|poke|p1|Rotom-Wash|item
+|poke|p1|Ferrothorn, M|item
+|poke|p1|Latios, M|item
+|poke|p1|Heatran, F|item
+|poke|p1|Azumarill, M|item
+|poke|p2|Keldeo|item
+|poke|p2|Excadrill, M|item
+|poke|p2|Thundurus, M|item
+|poke|p2|Bisharp, M|item
+|poke|p2|Garchomp, M|item
+|poke|p2|Latias, F|item
+|teampreview
+|start
+|switch|p1a: Latios|Latios, M|301/301
+|switch|p2a: Bisharp|Bisharp, M|100/100
+|turn|1
+|move|p1a: Latios|Defog|p2a: Bisharp
+|-unboost|p2a: Bisharp|evasion|1
+|-ability|p2a: Bisharp|Defiant|boost
+|-boost|p2a: Bisharp|atk|2
+|move|p2a: Bisharp|Iron Head|p1a: Latios
+|-damage|p1a: Latios|0 fnt
+|faint|p1a: Latios
+|upkeep
+|switch|p1a: Landorus|Landorus-Therian, M|319/319
+|-ability|p1a: Landorus|Intimidate|boost
+|-unboost|p2a: Bisharp|atk|1
+|-ability|p2a: Bisharp|Defiant|boost
+|-boost|p2a: Bisharp|atk|2
+|turn|2
+|move|p1a: Landorus|U-turn|p2a: Bisharp
+|-crit|p2a: Bisharp
+|-damage|p2a: Bisharp|52/100
+|switch|p1a: Azumarill|Azumarill, M|341/341|[from] U-turn
+|move|p2a: Bisharp|Iron Head|p1a: Azumarill
+|-damage|p1a: Azumarill|0 fnt
+|faint|p1a: Azumarill
+|upkeep
+|switch|p1a: Rotom|Rotom-Wash|304/304
+|turn|3
+|move|p1a: Rotom|Will-O-Wisp|p2a: Bisharp
+|-status|p2a: Bisharp|brn
+|move|p2a: Bisharp|Iron Head|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|256/304
+|-heal|p1a: Rotom|275/304|[from] item: Leftovers
+|-damage|p2a: Bisharp|39/100 brn|[from] brn
+|upkeep
+|turn|4
+|move|p1a: Rotom|Will-O-Wisp|p2a: Bisharp
+|-fail|p2a: Bisharp|brn
+|move|p2a: Bisharp|Iron Head|p1a: Rotom
+|-resisted|p1a: Rotom
+|-crit|p1a: Rotom
+|-damage|p1a: Rotom|204/304
+|-heal|p1a: Rotom|223/304|[from] item: Leftovers
+|-damage|p2a: Bisharp|27/100 brn|[from] brn
+|upkeep
+|turn|5
+|move|p1a: Rotom|Will-O-Wisp|p2a: Bisharp
+|-fail|p2a: Bisharp|brn
+|move|p2a: Bisharp|Iron Head|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|182/304
+|-heal|p1a: Rotom|201/304|[from] item: Leftovers
+|-damage|p2a: Bisharp|14/100 brn|[from] brn
+|upkeep
+|turn|6
+|move|p1a: Rotom|Will-O-Wisp|p2a: Bisharp
+|-fail|p2a: Bisharp|brn
+|move|p2a: Bisharp|Iron Head|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|159/304
+|-heal|p1a: Rotom|178/304|[from] item: Leftovers
+|-damage|p2a: Bisharp|2/100 brn|[from] brn
+|upkeep
+|turn|7
+|move|p1a: Rotom|Will-O-Wisp|p2a: Bisharp
+|-fail|p2a: Bisharp|brn
+|move|p2a: Bisharp|Iron Head|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|131/304
+|-heal|p1a: Rotom|150/304|[from] item: Leftovers
+|-damage|p2a: Bisharp|0 fnt|[from] brn
+|faint|p2a: Bisharp
+|upkeep
+|switch|p2a: Garchomp|Garchomp, M|100/100
+|turn|8
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|124/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-status|p2a: Garchomp|brn
+|-heal|p1a: Rotom|143/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|88/100 brn|[from] brn
+|upkeep
+|turn|9
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|118/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|137/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|76/100 brn|[from] brn
+|upkeep
+|turn|10
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|112/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|131/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|63/100 brn|[from] brn
+|upkeep
+|turn|11
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|102/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|121/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|51/100 brn|[from] brn
+|upkeep
+|turn|12
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|96/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|115/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|39/100 brn|[from] brn
+|upkeep
+|turn|13
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|89/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|108/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|26/100 brn|[from] brn
+|upkeep
+|turn|14
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-crit|p1a: Rotom
+|-damage|p1a: Rotom|70/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|89/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|14/100 brn|[from] brn
+|upkeep
+|turn|15
+|move|p2a: Garchomp|Fire Blast|p1a: Rotom
+|-resisted|p1a: Rotom
+|-damage|p1a: Rotom|61/304
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|80/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|1/100 brn|[from] brn
+|upkeep
+|turn|16
+|move|p2a: Garchomp|Earthquake|p1a: Rotom
+|-immune|p1a: Rotom|[from] ability: Levitate
+|move|p1a: Rotom|Will-O-Wisp|p2a: Garchomp
+|-fail|p2a: Garchomp|brn
+|-heal|p1a: Rotom|99/304|[from] item: Leftovers
+|-damage|p2a: Garchomp|0 fnt|[from] brn
+|faint|p2a: Garchomp
+|upkeep
+|switch|p2a: Keldeo|Keldeo|100/100
+|turn|17
+|move|p2a: Keldeo|Hydro Pump|p1a: Rotom|[miss]
+|-miss|p2a: Keldeo|p1a: Rotom
+|move|p1a: Rotom|Pain Split|p2a: Keldeo
+|-sethp|p2a: Keldeo|66/100|[from] move: Pain Split|[silent]
+|-sethp|p1a: Rotom|211/304|[from] move: Pain Split
+|-heal|p1a: Rotom|230/304|[from] item: Leftovers
+|upkeep
+|turn|18
+|switch|p1a: Landorus|Landorus-Therian, M|319/319
+|-ability|p1a: Landorus|Intimidate|boost
+|-unboost|p2a: Keldeo|atk|1
+|move|p2a: Keldeo|Hydro Pump|p1a: Landorus|[miss]
+|-miss|p2a: Keldeo|p1a: Landorus
+|upkeep
+|turn|19
+|move|p1a: Landorus|U-turn|p2a: Keldeo
+|-resisted|p2a: Keldeo
+|-damage|p2a: Keldeo|51/100
+|switch|p1a: Ferrothorn|Ferrothorn, M|352/352|[from] U-turn
+|move|p2a: Keldeo|Hydro Pump|p1a: Ferrothorn
+|-resisted|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|245/352
+|-heal|p1a: Ferrothorn|267/352|[from] item: Leftovers
+|upkeep
+|turn|20
+|switch|p1a: Heatran|Heatran, F|386/386
+|move|p2a: Keldeo|Hydro Pump|p1a: Heatran
+|-supereffective|p1a: Heatran
+|-damage|p1a: Heatran|2/386
+|-heal|p1a: Heatran|26/386|[from] item: Leftovers
+|upkeep
+|turn|21
+|switch|p1a: Ferrothorn|Ferrothorn, M|267/352
+|move|p2a: Keldeo|Hydro Pump|p1a: Ferrothorn|[miss]
+|-miss|p2a: Keldeo|p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|289/352|[from] item: Leftovers
+|upkeep
+|turn|22
+|move|p2a: Keldeo|Hydro Pump|p1a: Ferrothorn|[miss]
+|-miss|p2a: Keldeo|p1a: Ferrothorn
+|move|p1a: Ferrothorn|Leech Seed|p2a: Keldeo
+|-start|p2a: Keldeo|move: Leech Seed
+|-heal|p1a: Ferrothorn|311/352|[from] item: Leftovers
+|-damage|p2a: Keldeo|39/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|351/352|[silent]
+|upkeep
+|turn|23
+|move|p1a: Ferrothorn|Protect|p1a: Ferrothorn
+|-singleturn|p1a: Ferrothorn|Protect
+|move|p2a: Keldeo|Hydro Pump|p1a: Ferrothorn
+|-activate|p1a: Ferrothorn|move: Protect
+|-heal|p1a: Ferrothorn|352/352|[from] item: Leftovers
+|-damage|p2a: Keldeo|27/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|upkeep
+|turn|24
+|move|p2a: Keldeo|Hydro Pump|p1a: Ferrothorn
+|-resisted|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|233/352
+|move|p1a: Ferrothorn|Leech Seed||[still]
+|-fail|p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|255/352|[from] item: Leftovers
+|-damage|p2a: Keldeo|14/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|295/352|[silent]
+|upkeep
+|turn|25
+|-activate|p2a: Keldeo|move: Struggle
+|move|p2a: Keldeo|Struggle|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|283/352
+|-damage|p2a: Keldeo|2/100|[from] ability: Iron Barbs|[of] p1a: Ferrothorn
+|-damage|p2a: Keldeo|0 fnt|[from] recoil
+|faint|p2a: Keldeo
+|move|p1a: Ferrothorn|Gyro Ball|p2: Keldeo|[notarget]
+|-fail|p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|305/352|[from] item: Leftovers
+|upkeep
+|switch|p2a: Latias|Latias, F|100/100
+|turn|26
+|move|p2a: Latias|Draco Meteor|p1a: Ferrothorn
+|-resisted|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|236/352
+|-unboost|p2a: Latias|spa|2
+|move|p1a: Ferrothorn|Leech Seed|p2a: Latias|[miss]
+|-miss|p1a: Ferrothorn|p2a: Latias
+|-heal|p1a: Ferrothorn|258/352|[from] item: Leftovers
+|upkeep
+|turn|27
+|move|p2a: Latias|Draco Meteor|p1a: Ferrothorn
+|-resisted|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|224/352
+|-unboost|p2a: Latias|spa|2
+|move|p1a: Ferrothorn|Leech Seed|p2a: Latias
+|-start|p2a: Latias|move: Leech Seed
+|-heal|p1a: Ferrothorn|246/352|[from] item: Leftovers
+|-damage|p2a: Latias|88/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|291/352|[silent]
+|upkeep
+|turn|28
+|switch|p1a: Rotom|Rotom-Wash|230/304
+|move|p2a: Latias|Draco Meteor|p1a: Rotom
+|-damage|p1a: Rotom|185/304
+|-unboost|p2a: Latias|spa|2
+|-heal|p2a: Latias|94/100|[from] item: Leftovers
+|-heal|p1a: Rotom|204/304|[from] item: Leftovers
+|-damage|p2a: Latias|82/100|[from] Leech Seed|[of] p1a: Rotom
+|-heal|p1a: Rotom|249/304|[silent]
+|upkeep
+|turn|29
+|switch|p1a: Landorus|Landorus-Therian, M|319/319
+|-ability|p1a: Landorus|Intimidate|boost
+|-unboost|p2a: Latias|atk|1
+|move|p2a: Latias|Draco Meteor|p1a: Landorus
+|-damage|p1a: Landorus|268/319
+|-heal|p2a: Latias|88/100|[from] item: Leftovers
+|-damage|p2a: Latias|75/100|[from] Leech Seed|[of] p1a: Landorus
+|-heal|p1a: Landorus|313/319|[silent]
+|upkeep
+|turn|30
+|move|p1a: Landorus|U-turn|p2a: Latias
+|-supereffective|p2a: Latias
+|-damage|p2a: Latias|18/100
+|switch|p1a: Ferrothorn|Ferrothorn, M|291/352|[from] U-turn
+|move|p2a: Latias|Draco Meteor|p1a: Ferrothorn|[miss]
+|-miss|p2a: Latias|p1a: Ferrothorn
+|-heal|p2a: Latias|24/100|[from] item: Leftovers
+|-heal|p1a: Ferrothorn|313/352|[from] item: Leftovers
+|-damage|p2a: Latias|11/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|-heal|p1a: Ferrothorn|352/352|[silent]
+|upkeep
+|turn|31
+|move|p2a: Latias|Draco Meteor|p1a: Ferrothorn
+|-resisted|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|335/352
+|move|p1a: Ferrothorn|Leech Seed||[still]
+|-fail|p1a: Ferrothorn
+|-heal|p2a: Latias|18/100|[from] item: Leftovers
+|-heal|p1a: Ferrothorn|352/352|[from] item: Leftovers
+|-damage|p2a: Latias|5/100|[from] Leech Seed|[of] p1a: Ferrothorn
+|upkeep
+|turn|32
+|switch|p1a: Rotom|Rotom-Wash|249/304
+|move|p2a: Latias|Draco Meteor|p1a: Rotom
+|-damage|p1a: Rotom|215/304
+|-heal|p2a: Latias|11/100|[from] item: Leftovers
+|-heal|p1a: Rotom|234/304|[from] item: Leftovers
+|-damage|p2a: Latias|0 fnt|[from] Leech Seed|[of] p1a: Rotom
+|-heal|p1a: Rotom|273/304|[silent]
+|faint|p2a: Latias
+|upkeep
+|switch|p2a: Excadrill|Excadrill, M|100/100
+|-ability|p2a: Excadrill|Mold Breaker
+|-item|p2a: Excadrill|Air Balloon
+|turn|33
+|move|p2a: Excadrill|Earthquake|p1a: Rotom
+|-supereffective|p1a: Rotom
+|-damage|p1a: Rotom|0 fnt
+|faint|p1a: Rotom
+|upkeep
+|switch|p1a: Ferrothorn|Ferrothorn, M|352/352
+|turn|34
+|move|p1a: Ferrothorn|Protect|p1a: Ferrothorn
+|-singleturn|p1a: Ferrothorn|Protect
+|move|p2a: Excadrill|Earthquake|p1a: Ferrothorn
+|-activate|p1a: Ferrothorn|move: Protect
+|upkeep
+|turn|35
+|move|p1a: Ferrothorn|Protect||[still]
+|-fail|p1a: Ferrothorn
+|move|p2a: Excadrill|Earthquake|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|232/352
+|-heal|p1a: Ferrothorn|254/352|[from] item: Leftovers
+|upkeep
+|turn|36
+|move|p2a: Excadrill|Earthquake|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|136/352
+|move|p1a: Ferrothorn|Gyro Ball|p2a: Excadrill
+|-resisted|p2a: Excadrill
+|-damage|p2a: Excadrill|68/100
+|-enditem|p2a: Excadrill|Air Balloon
+|-heal|p1a: Ferrothorn|158/352|[from] item: Leftovers
+|upkeep
+|turn|37
+|move|p2a: Excadrill|Earthquake|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|25/352
+|move|p1a: Ferrothorn|Stealth Rock|p2a: Excadrill
+|-sidestart|p2: pokemonhackie|move: Stealth Rock
+|-heal|p1a: Ferrothorn|47/352|[from] item: Leftovers
+|upkeep
+|turn|38
+|switch|p1a: Heatran|Heatran, F|26/386
+|move|p2a: Excadrill|Earthquake|p1a: Heatran
+|-supereffective|p1a: Heatran
+|-damage|p1a: Heatran|0 fnt
+|faint|p1a: Heatran
+|upkeep
+|switch|p1a: Landorus|Landorus-Therian, M|313/319
+|-ability|p1a: Landorus|Intimidate|boost
+|-unboost|p2a: Excadrill|atk|1
+|turn|39
+|move|p1a: Landorus|U-turn|p2a: Excadrill
+|-resisted|p2a: Excadrill
+|-damage|p2a: Excadrill|48/100
+|switch|p1a: Ferrothorn|Ferrothorn, M|47/352|[from] U-turn
+|move|p2a: Excadrill|Earthquake|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|0 fnt
+|faint|p1a: Ferrothorn
+|upkeep
+|switch|p1a: Landorus|Landorus-Therian, M|313/319
+|-ability|p1a: Landorus|Intimidate|boost
+|-unboost|p2a: Excadrill|atk|1
+|turn|40
+|move|p1a: Landorus|U-turn|p2a: Excadrill
+|-resisted|p2a: Excadrill
+|-damage|p2a: Excadrill|29/100
+|move|p2a: Excadrill|Earthquake|p1a: Landorus
+|-immune|p1a: Landorus
+|upkeep
+|turn|41
+|move|p1a: Landorus|U-turn|p2a: Excadrill
+|-resisted|p2a: Excadrill
+|-damage|p2a: Excadrill|10/100
+|move|p2a: Excadrill|Earthquake|p1a: Landorus
+|-immune|p1a: Landorus
+|upkeep
+|turn|42
+|move|p1a: Landorus|U-turn|p2a: Excadrill
+|-resisted|p2a: Excadrill
+|-damage|p2a: Excadrill|0 fnt
+|faint|p2a: Excadrill
+|upkeep
+|switch|p2a: Thundurus|Thundurus, M|100/100
+|-damage|p2a: Thundurus|76/100|[from] Stealth Rock
+|turn|43
+|move|p1a: Landorus|U-turn|p2a: Thundurus
+|-resisted|p2a: Thundurus
+|-damage|p2a: Thundurus|56/100
+|move|p2a: Thundurus|Focus Blast|p1a: Landorus
+|-resisted|p1a: Landorus
+|-damage|p1a: Landorus|200/319
+|-damage|p2a: Thundurus|47/100|[from] item: Life Orb
+|upkeep
+|turn|44
+|move|p1a: Landorus|U-turn|p2a: Thundurus
+|-resisted|p2a: Thundurus
+|-damage|p2a: Thundurus|27/100
+|move|p2a: Thundurus|Focus Blast|p1a: Landorus
+|-resisted|p1a: Landorus
+|-damage|p1a: Landorus|84/319
+|-damage|p2a: Thundurus|18/100|[from] item: Life Orb
+|upkeep
+|turn|45
+|move|p1a: Landorus|U-turn|p2a: Thundurus
+|-resisted|p2a: Thundurus
+|-damage|p2a: Thundurus|0 fnt
+|faint|p2a: Thundurus
+    </script>
+</div>
+
+<div class="battle-log battle-log-inline" style="display:none"></div>
+
+<script>
+    let daily = Math.floor(Date.now() / 1000 / 60 / 60 / 24); document.write('<script src="https://play.pokemonshowdown.com/js/replay-embed.js?version' + daily + '"></' + 'script>');
+</script>
+
+<p style="text-align:center"> Replay created by <a href="https://github.com/hsahovic/poke-env">poke-env</a>, with code from <a
+        href="https://github.com/smogon/pokemon-showdown"> pokemon-showdown</a>. If something goes wrong, don't hesitate
+    to open an <a href="https://github.com/hsahovic/poke-env/issues">issue!</a></p>
