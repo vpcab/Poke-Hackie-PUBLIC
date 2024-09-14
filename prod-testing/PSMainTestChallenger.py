@@ -1,30 +1,31 @@
 import asyncio
 
-from poke_env import AccountConfiguration, ShowdownServerConfiguration
+from poke_env import AccountConfiguration, ShowdownServerConfiguration, LocalhostServerConfiguration
 
 import importlib
-module = importlib.import_module("players.POKE-BOT.bot")
+module = importlib.import_module("players.POKE-BOT 2.bot")
 
 
 # Runs a bot player on the actual pokemon showdown server
 # Due to ISP spam detection issues, the bot can only be tested by challenging it directly
 async def main():
     # Initialize player
-    myTeamFile = open("prod-testing/players/POKE-BOT/team.txt")
+    myTeamFile = open("prod-testing/players/POKE-BOT 2/team.txt")
     myTeam = myTeamFile.read()
     myTeamFile.close()
 
     player = module.MyPokeBot(
-        account_configuration=AccountConfiguration("insert-bot-name", "insert-bot-password"),
-        server_configuration=ShowdownServerConfiguration,
+        account_configuration=AccountConfiguration("UNIQUENAMEBOTTWO", "insert-bot-password"),
+        server_configuration=LocalhostServerConfiguration,
         team=myTeam
     )
 
     # Sending challenges to 'your_username'
+    await player.send_challenges("UNIQUENAMEBOTONE", n_challenges=1)
     #await player.send_challenges("hmtesting", n_challenges=1)
 
     # Accepting one challenge from any user
-    await player.accept_challenges(None, 1)
+    #await player.accept_challenges(None, 1)
     print("Battle over!")
 
     # Accepting three challenges from 'your_username'

@@ -35,4 +35,15 @@ As for the pokemon team, use the output from the Teambuilder tool and replace th
 For useful functions to aid in decision logic, refer to [Main Modules Documentation] in https://poke-env.readthedocs.io/en/stable/modules/battle.html - especially with functions marked with the "property" tag.
 
 
+## How to run a bot
+Run PSMainTestAccepter.py and challenge your bot directly.
+If you're on a local server, ensure that server_configuration is set to LocalhostServerConfiguration
+If on the actual server, use ShowdownServerConfiguration
+
+## Have two bots battle each other
+NOTE: this configuration is specifically for VSCode AND LocalhostServerConfiguration
+Run PSMainTestAccepter.py in a dedicated terminal, then run PSMainTestChallenger.py in another dedicated terminal
+Ensure that the name in PSMainTestChallenger.py line 24 is the same as the name defined in PSMainTestAccepter.py account config name
+
+
 
